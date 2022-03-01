@@ -5,9 +5,11 @@ import PropTypes from 'prop-types';
 // import { reduxSelector, reduxActionCreator } from '../../../redux/exampleRedux.js';
 
 import styles from './MainLayout.module.scss';
+import Header from '../Header/Header';
 
 const Component = ({children}) => (
   <div className={ styles.root}>
+    <Header />
     <h2>MainLayout</h2>
     {children}
   </div>
