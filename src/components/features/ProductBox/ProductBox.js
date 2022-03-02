@@ -9,8 +9,8 @@ const ProductBox = ({product}) => {
     <div className={styles.root}>
       <div className={styles.image}>
         <img src={image} alt={title} />
-        <h1>{title}</h1>
       </div>
+      <h1>{title}</h1>
       <div className={styles.price}>
         <h3 className="col-6">{price}</h3>
       </div>
