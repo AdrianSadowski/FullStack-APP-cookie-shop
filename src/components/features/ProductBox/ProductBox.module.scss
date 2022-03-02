@@ -1,0 +1,52 @@
+@import '../../../styles/settings.scss';
+
+.root {
+  max-width: 500px;
+  max-height: 700px;
+  width: 100%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  .image {
+    border-bottom: 5px solid $color-pink;
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    .btn {
+      background-color: #44c767;
+      border-radius: 28px;
+      border: 1px solid #18ab29;
+      display: inline-block;
+      cursor: pointer;
+      color: #ffffff;
+      font-size: 17px;
+      padding: 5px 20px;
+      text-decoration: none;
+      text-shadow: 0px 1px 0px #2f6627;
+      margin: 0 10px;
+      position: relative;
+      &:active {
+        position: relative;
+        top: 1px;
+      }
+      &:hover {
+        background-color: #5cbf2a;
+      }
+
+      p{
+        margin-top: 10px;
+      }
+    }
+  }
+}

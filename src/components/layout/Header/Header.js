@@ -37,14 +37,14 @@ const Header = () => {
       <nav className={styles.root}>
         {(toogleMenu || screenWidth > 576) && (
           <ul className={styles.list}>
-            <Link to="/onas" className={styles.items} onClick={toogleNav}>
-              <li>o nas</li>
+            {/* <Link to="/aboutus" className={styles.items} onClick={toogleNav}>
+              <li>About us</li>
+            </Link> */}
+            <Link to="/products" className={styles.items} onClick={toogleNav}>
+              <li>Products</li>
             </Link>
-            <Link to="/oferta" className={styles.items} onClick={toogleNav}>
-              <li>oferta</li>
-            </Link>
-            <Link to="/kontakt" onClick={toogleNav} className={styles.items}>
-              <li>kontakt</li>
+            <Link to="/contact" onClick={toogleNav} className={styles.items}>
+              <li>Contact</li>
             </Link>
           </ul>
         )}

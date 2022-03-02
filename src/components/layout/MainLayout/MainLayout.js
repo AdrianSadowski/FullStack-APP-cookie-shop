@@ -6,12 +6,13 @@ import PropTypes from 'prop-types';
 
 import styles from './MainLayout.module.scss';
 import Header from '../Header/Header';
+import Footer from '../Footer/Footer';
 
 const Component = ({children}) => (
   <div className={ styles.root}>
     <Header />
-    <h2>MainLayout</h2>
     {children}
+    <Footer />
   </div>
 );
 
