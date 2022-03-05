@@ -13,7 +13,7 @@ router.get('/products', async (req, res) => {
   }
 });
 
-router.get('/posts/:id', async (req, res) => {
+router.get('/products/:id', async (req, res) => {
   try {
     const result = await Product.findById(req.params.id);
     if(!result) res.status(404).json({product: 'Not Found'});

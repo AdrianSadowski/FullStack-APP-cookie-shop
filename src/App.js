@@ -12,7 +12,7 @@ import {NotFound} from './components/views/NotFound/NotFound';
 import Contact from './components/views/Contact/Contact';
 import Products from './components/views/Products/Products';
 import AboutUs from './components/views/AboutUs/AboutUs';
-import ProductSingle from './components/views/ProductSingle/ProductSingle';
+import {ProductSingle} from './components/views/ProductSingle/ProductSingle';
 
 const App = () => (
   <Provider store={store}>

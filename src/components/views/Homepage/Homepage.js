@@ -17,7 +17,7 @@ const Component = ({products, fetchProducts}) => {
       {products.length && (
         <div className={styles.product}>
           {products.map(product => (
-            <ProductBox key={product.id} product={product}/>
+            <ProductBox key={product._id} product={product}/>
           ))}
         </div>
       )}
