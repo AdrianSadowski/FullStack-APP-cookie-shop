@@ -4,19 +4,19 @@ import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 
 const ProductBox = ({product}) => {
-  const {title, price, id, image} = product;
+  const {title, price, _id, image} = product;
   return (
     <div className={styles.root}>
       <div className={styles.image}>
-        <Link to={`/products/${id}`}>
+        <Link to={`/product/${_id}`}>
           <img src={image} alt={title} />
         </Link>
       </div>
-      <Link to={`/products/${id}`} className={styles.title}>
+      <Link to={`/product/${_id}`} className={styles.title}>
         <p>{title}</p>
       </Link>
       <div className={styles.price}>
-        <h3 className="col-6">{price}</h3>
+        <p className="col-6">{price}</p>
       </div>
       <div className={styles.buttons}>
         <div className={styles.btn}>
@@ -32,7 +32,7 @@ const ProductBox = ({product}) => {
 
 ProductBox.propTypes = {
   product: PropTypes.shape({
-    id: PropTypes.number.isRequired,
+    _id: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
     price: PropTypes.string,
     image: PropTypes.string,

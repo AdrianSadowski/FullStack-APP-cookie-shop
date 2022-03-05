@@ -12,6 +12,7 @@ import {NotFound} from './components/views/NotFound/NotFound';
 import Contact from './components/views/Contact/Contact';
 import Products from './components/views/Products/Products';
 import AboutUs from './components/views/AboutUs/AboutUs';
+import ProductSingle from './components/views/ProductSingle/ProductSingle';
 
 const App = () => (
   <Provider store={store}>
@@ -20,7 +21,8 @@ const App = () => (
         <Switch>
           <Route exact path="/" component={Homepage} />
           <Route exact path="/aboutus" component={AboutUs} />
-          <Route exact path="/products" component={Products} />
+          <Route exact path="/product" component={Products} />
+          <Route exact path="/product/:id" component={ProductSingle} />
           <Route exact path="/contact" component={Contact} />
           <Route path="*" component={NotFound} />
         </Switch>

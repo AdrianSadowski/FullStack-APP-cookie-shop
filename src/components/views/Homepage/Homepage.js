@@ -6,10 +6,11 @@ import {connect} from 'react-redux';
 // import { reduxSelector, reduxActionCreator } from '../../../redux/exampleRedux.js';
 
 import styles from './Homepage.module.scss';
-import {getAll} from '../../../redux/productsRedux';
+import {getAll, fetchAllProducts} from '../../../redux/productsRedux';
 import ProductBox from '../../features/ProductBox/ProductBox';
 
-const Component = ({products}) => {
+const Component = ({products, fetchProducts}) => {
+  fetchProducts();
   return (
     <div className={styles.root}>
       <h2>Homepage</h2>
@@ -26,17 +27,18 @@ const Component = ({products}) => {
 
 Component.propTypes = {
   products: PropTypes.arrayOf(PropTypes.object),
+  fetchProducts: PropTypes.func,
 };
 
 const mapStateToProps = state => ({
   products: getAll(state),
 });
 
-// const mapDispatchToProps = dispatch => ({
-//   someAction: arg => dispatch(reduxActionCreator(arg)),
-// });
+const mapDispatchToProps = dispatch => ({
+  fetchProducts: () => dispatch(fetchAllProducts()),
+});
 
-const Container = connect(mapStateToProps)(Component);
+const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
 
 export {
   //Component as Homepage,
