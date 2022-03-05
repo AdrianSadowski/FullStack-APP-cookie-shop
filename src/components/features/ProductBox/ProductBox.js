@@ -8,9 +8,13 @@ const ProductBox = ({product}) => {
   return (
     <div className={styles.root}>
       <div className={styles.image}>
-        <img src={image} alt={title} />
+        <Link to={`/products/${id}`}>
+          <img src={image} alt={title} />
+        </Link>
       </div>
-      <h1>{title}</h1>
+      <Link to={`/products/${id}`} className={styles.title}>
+        <p>{title}</p>
+      </Link>
       <div className={styles.price}>
         <h3 className="col-6">{price}</h3>
       </div>
@@ -18,9 +22,9 @@ const ProductBox = ({product}) => {
         <div className={styles.btn}>
           <p>Dodaj do koszyka</p>
         </div>
-        <Link to={`/products/${id}`} className={styles.btn}>
+        {/* <Link to={`/products/${id}`} className={styles.btn}>
           <p>SHOW MORE</p>
-        </Link>
+        </Link> */}
       </div>
     </div>
   );
