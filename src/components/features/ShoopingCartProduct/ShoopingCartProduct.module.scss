@@ -1,0 +1,27 @@
+@import '../../../styles/settings.scss';
+
+.root {
+  border: 5px double #61eb34;
+
+  .image {
+    display: none;
+  }
+
+  .product_info {
+    .title{
+      padding-top: 20px;
+      font-size: 20px;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+
+    }
+    .amount{
+      display: flex;
+        width: 25%;
+        input{
+          width: 100%;
+        }
+    }
+  }
+}
