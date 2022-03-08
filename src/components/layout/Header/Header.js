@@ -31,15 +31,12 @@ const Header = () => {
     <div className={styles.root}>
       <div className={styles.logo}>
         <Link onClick={toogleNavFalse} to="/">
-          <img src="assets/logo.png" alt="Logo" />
+          <img src="../assets/logo.png" alt="Logo" />
         </Link>
       </div>
       <nav className={styles.root}>
         {(toogleMenu || screenWidth > 576) && (
           <ul className={styles.list}>
-            {/* <Link to="/aboutus" className={styles.items} onClick={toogleNav}>
-              <li>About us</li>
-            </Link> */}
             <Link to="/products" className={styles.items} onClick={toogleNav}>
               <li>Products</li>
             </Link>

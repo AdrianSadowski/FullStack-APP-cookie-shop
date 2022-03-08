@@ -11,7 +11,7 @@ import {Homepage} from './components/views/Homepage/Homepage';
 import {NotFound} from './components/views/NotFound/NotFound';
 import Contact from './components/views/Contact/Contact';
 import Products from './components/views/Products/Products';
-import AboutUs from './components/views/AboutUs/AboutUs';
+import ShoopingCart from './components/views/ShoopingCart/ShoopingCart';
 import {ProductSingle} from './components/views/ProductSingle/ProductSingle';
 
 const App = () => (
@@ -20,7 +20,7 @@ const App = () => (
       <MainLayout>
         <Switch>
           <Route exact path="/" component={Homepage} />
-          <Route exact path="/aboutus" component={AboutUs} />
+          <Route exact path="/ShoopingCart" component={ShoopingCart} />
           <Route exact path="/product" component={Products} />
           <Route exact path="/product/:id" component={ProductSingle} />
           <Route exact path="/contact" component={Contact} />

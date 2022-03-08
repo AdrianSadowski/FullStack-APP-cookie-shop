@@ -26,7 +26,7 @@ const Component = ({products, fetchProducts}) => {
 };
 
 Component.propTypes = {
-  products: PropTypes.arrayOf(PropTypes.object),
+  products: PropTypes.array,
   fetchProducts: PropTypes.func,
 };
 

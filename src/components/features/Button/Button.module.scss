@@ -1,0 +1,26 @@
+@import '../../../styles/settings.scss';
+
+.btn {
+  background: $button-backgourd;
+  border-radius: 28px;
+  border: 1px solid #18ab29;
+  display: inline-block;
+  cursor: pointer;
+  color: #ffffff;
+  font-size: 17px;
+  padding: 5px 20px;
+  text-decoration: none;
+  margin: 0 10px;
+  position: relative;
+  &:active {
+    position: relative;
+    top: 1px;
+  }
+  &:hover {
+    background: $button-backgourd-hover;
+  }
+
+  p {
+    margin-top: 10px;
+  }
+}

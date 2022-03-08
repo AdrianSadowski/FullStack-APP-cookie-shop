@@ -1,1 +1,9 @@
 @import '../../../styles/settings.scss';
+
+.root {
+  .product{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}

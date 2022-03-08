@@ -1,18 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
+import Button from '../../features/Button/Button';
 
 import {getProduct, fetchProductById} from '../../../redux/productsRedux';
 
 import styles from './ProductSingle.module.scss';
-import ProductBox from '../../features/ProductBox/ProductBox';
 
 const Component = ({product, fetchOneProduct}) => {
   fetchOneProduct();
   return (
     <div className={styles.root}>
-      <h1>ProductSingle</h1>
-      {product && <ProductBox product={product} />}
+      {product && (
+        <div className={styles.product}>
+          <h1>{product.title} </h1>
+          <img src={product.image} alt={product.title} />
+          <h3>Cena: {product.price}PLN</h3>
+          <Button name='Dodaj do koszyka' />
+        </div>
+      )}
     </div>
   );
 };
