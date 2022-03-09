@@ -49,6 +49,7 @@ const Header = () => {
           <FontAwesomeIcon onClick={toogleNav} className={styles.menuButton} icon={faBars} />
           <Link to="/shoopingcart" className={styles.cartButton}>
             <FontAwesomeIcon icon={faBasketShopping} />
+            <p>1</p>
           </Link>
         </div>
       </nav>

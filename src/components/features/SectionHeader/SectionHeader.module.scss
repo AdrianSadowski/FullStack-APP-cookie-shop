@@ -1,0 +1,17 @@
+@import '../../../styles/settings.scss';
+
+.root {
+  background: $backround-div-color;
+  height: 80px;
+  display: flex;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+
+
+  h1{
+    color: $main-color;
+    font-weight: bold;
+
+  }
+}

@@ -1,6 +1,6 @@
 @import '../../../styles/settings.scss';
 
-.root{
+.cart{
   margin: 20px 0;
 
   .cartSummary{
@@ -10,7 +10,7 @@
     align-items: center;
     align-content: center;
     margin: 20px;
-    border: 5px double #61eb34;
+    border: 5px double $green;
     height: 200px;
     h3{
       font-weight: bold;
@@ -20,6 +20,17 @@
       width: 70%;
       text-align: center;
     }
+
+    .cartSummary_price{
+      font-size: 20px;
+      text-align: center;
+
+      span{
+        font-weight: bold;
+        color: $green;
+        font-size: 26px;
+      }
+    }
   }
 
   .cartProducts{
@@ -27,4 +38,13 @@
     text-align: center;
   }
 
+}
+
+@media (min-width:577px){
+  .cart{
+    margin: auto;
+    margin-top: 30px;
+    width: 80%;
+    text-align: center;
+  }
 }
