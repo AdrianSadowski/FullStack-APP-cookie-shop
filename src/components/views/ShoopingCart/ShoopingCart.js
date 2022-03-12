@@ -1,47 +1,52 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import Button from '../../features/Button/Button';
 import ShoopingCartProduct from '../../features/ShoopingCartProduct/ShoopingCartProduct';
 import SectionHeader from '../../features/SectionHeader/SectionHeader';
 import styles from './ShoopingCart.module.scss';
+import { useSelector, useDispatch } from 'react-redux';
+import { getAllCart, removeFromCart } from '../../../redux/productsRedux';
 
 const ShoopingCart = () => {
-  const productsData = [
-    {
-      id: '1',
-      title: 'Gryzak Czyszczący zęby',
-      priceSingle: 25,
-      amount: 1,
-      image: '../assets/gryzak-czyszczacy-zeby.jpg',
-    },
-    {
-      id: '2',
-      title: 'Piłka dla psa',
-      priceSingle: 231,
-      amount: 3,
-      image: '../assets/dog-ball.jpg',
-    },
-    {
-      id: '3',
-      title: 'Gumowy kurcza',
-      priceSingle: 32,
-      amount: 2,
-      image: '../assets/Gumowy-kurczak.jpg',
-    },
-  ];
+
+  const cartData = useSelector(state => getAllCart(state));
+  const dispatch = useDispatch();
+  const removeCartItem = productId => dispatch(removeFromCart(productId));
+
+  const [totalPrice, setTotalPrice] = useState(0);
+  const [totalItems, setTotalItems] = useState(0);
+
+  useEffect(() =>{
+    let items = 0;
+    let price = 0;
+
+    cartData.forEach(item => {
+      items += item.amount;
+      price += item.amount * item.priceSingle;
+    });
+
+    setTotalPrice(price);
+    setTotalItems(items);
+  }, [cartData, totalPrice, totalItems, setTotalItems, setTotalPrice ]);
+
   return (
     <div className={styles.root}>
       <SectionHeader name="Koszyk" />
       <div className={styles.cart}>
         <div className={styles.cartProducts}>
-          {productsData.map((product, index) => (
-            <ShoopingCartProduct key={index} {...product} />
+          {cartData.map((item, index) => (
+            <ShoopingCartProduct 
+              key={index} 
+              {...item} 
+              removeItem={() => removeCartItem(item._id)}
+            />
           ))}
         </div>
         <div className={styles.cartSummary}>
           <h3>Twój koszyk</h3>
+          <h5>Ilość przedmiotów: {totalItems}</h5>
           <p className={styles.cartSummary_price}>
             Całkowita wartość koszyka:
-            <span> 165 PLN </span>
+            <span> {totalPrice.toFixed(2)} PLN </span>
           </p>
           <Button name="Zamów" className={styles.cardButton} />
         </div>

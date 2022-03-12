@@ -3,31 +3,18 @@ import PropTypes from 'prop-types';
 
 import styles from './ShoopingCartProduct.module.scss';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faMinus, faPlus, faTrash} from '@fortawesome/free-solid-svg-icons';
+import {faTrash} from '@fortawesome/free-solid-svg-icons';
+import {adjustQTY} from '../../../redux/productsRedux';
+import {useDispatch} from 'react-redux';
 
-const ShoopingCartProduct = ({id, title, priceSingle, amount, image}) => {
-  const [value, setValue] = useState(amount);
+const ShoopingCartProduct = ({_id, title, priceSingle, amount, image, removeItem}) => {
+  const dispatch = useDispatch();
+  const adJustQTY = (id, value) => dispatch(adjustQTY(id, value));
+  const [input, setInput] = useState(amount);
 
-  const onChange = value => {
-    setValue(value);
-  };
-  const onUpArrow = () => {
-    if(value === 10) {
-      return null;
-    } else {
-      setValue(value => value + 1);
-    }
-  };
-  const onDownArrow = () => {
-    if(value === 1) {
-      return null;
-    } else {
-      setValue(value => value - 1);
-    }
-  };
-
-  const deleteItem = () => {
-    console.log('usuwamy item ');
+  const onChangeHandler = e => {
+    setInput(e.target.value);
+    adJustQTY(_id, e.target.value);
   };
 
   return (
@@ -38,26 +25,25 @@ const ShoopingCartProduct = ({id, title, priceSingle, amount, image}) => {
       <div className={styles.product_info}>
         <div className={styles.title}>
           <h3>{title}</h3>
-          {/* <div className={styles.amount}>
-            <p>Ilość</p>
-            <input type='number' value={value} onChange={onChange}/>
-          </div> */}
           <div className={styles.amount}>
-            <div className="arrow arrow-up" onClick={onUpArrow} >
-              <FontAwesomeIcon icon={faPlus} />
-            </div>
-            <input value={value} onChange={() => onChange(value)} type="text" />
-            <div className="arrow arrow-down" onClick={onDownArrow}> 
-              <FontAwesomeIcon icon={faMinus} />
-            </div>
+            <input value={input} onChange={onChangeHandler} type="number" min="1" />
+            <p>{input}</p>
           </div>
         </div>
         <div className={styles.price_action}>
-          <p className={styles.price}>
-            Cena za sztukę: <span>{priceSingle} </span>
-            Wartość: <span>{priceSingle * value} PLN</span>
-          </p>
-          <FontAwesomeIcon className={styles.action} icon={faTrash} onClick={deleteItem} />
+          <div className={styles.price}>
+            <p>
+              Cena za sztukę: <span>{priceSingle} </span>
+            </p>
+            <p>
+              Wartość: <span>{(priceSingle * amount).toFixed(2)} PLN</span>
+            </p>
+          </div>
+          <FontAwesomeIcon
+            className={styles.action}
+            icon={faTrash}
+            onClick={() => removeItem(_id)}
+          />
         </div>
       </div>
     </div>
@@ -65,11 +51,12 @@ const ShoopingCartProduct = ({id, title, priceSingle, amount, image}) => {
 };
 
 ShoopingCartProduct.propTypes = {
-  id: PropTypes.string,
+  _id: PropTypes.string,
   title: PropTypes.string,
-  priceSingle: PropTypes.number,
+  priceSingle: PropTypes.string,
   amount: PropTypes.number,
   image: PropTypes.string,
+  removeItem: PropTypes.func.isRequired,
 };
 
 export default ShoopingCartProduct;

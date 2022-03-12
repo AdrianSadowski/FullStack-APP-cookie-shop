@@ -2,16 +2,19 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './Button.module.scss';
 
-const Button = ({name}) => {
+const Button = ({name, click}) => {
+
+
   return (
-    <div className={styles.btn}>
+    <button onClick={click} className={styles.btn}>
       <p>{name}</p>
-    </div>
+    </button>
   );
 };
 
 Button.propTypes = {
   name: PropTypes.string,
+  click: PropTypes.func,
 };
 
 export default Button;

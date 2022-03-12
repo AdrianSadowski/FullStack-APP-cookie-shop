@@ -44,7 +44,26 @@
   .cart{
     margin: auto;
     margin-top: 30px;
-    width: 80%;
+    width: 90%;
     text-align: center;
+  }
+}
+// @media (min-width:769px){
+//   .cart{
+//     display: flex;
+//     .cartSummary{
+//       height: 300px;
+//       width: 30%;
+//     }
+//   }
+// }
+
+@media (min-width:1200px){
+  .cart {
+    display: flex;
+    .cartSummary{
+      height: 300px;
+      width: 40%;
+    }
   }
 }

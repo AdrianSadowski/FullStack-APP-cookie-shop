@@ -2,9 +2,30 @@ import React from 'react';
 import styles from './ProductBox.module.scss';
 import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
+import Button from '../Button/Button';
+import {useDispatch} from 'react-redux';
+import {addToCart} from '../../../redux/productsRedux';
 
 const ProductBox = ({product}) => {
   const {title, price, _id, image} = product;
+
+  const dispatch = useDispatch();
+  const addProduct = product => dispatch(addToCart(product));
+
+
+  const addToCartProduct = event => {
+    event.preventDefault();
+    console.log(title, 'dodano do koszyka');
+
+    addProduct({
+      _id,
+      amount: 1,
+      priceSingle: price,
+      title,
+      image,
+    });
+  };
+
   return (
     <div className={styles.root}>
       <div className={styles.image}>
@@ -19,12 +40,7 @@ const ProductBox = ({product}) => {
         <p className="col-6">{price}</p>
       </div>
       <div className={styles.buttons}>
-        <div className={styles.btn}>
-          <p>Dodaj do koszyka</p>
-        </div>
-        {/* <Link to={`/products/${id}`} className={styles.btn}>
-          <p>SHOW MORE</p>
-        </Link> */}
+        <Button click={addToCartProduct} name="Dodaj do koszyka" />
       </div>
     </div>
   );

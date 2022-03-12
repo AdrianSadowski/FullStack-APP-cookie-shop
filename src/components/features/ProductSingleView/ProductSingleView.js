@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import Button from '../../features/Button/Button';
+import Button from '../Button/Button';
 import {addToCart} from '../../../redux/productsRedux';
 
 import {getProduct, fetchProductById} from '../../../redux/productsRedux';
