@@ -1,19 +1,17 @@
 @import '../../../styles/settings.scss';
 
-.root {
-  .product{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.product {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
-    .image {
-      width: 400px;
-      height: 400px;
+  .image {
+    width: 400px;
+    height: 400px;
 
-      img{
-        width: 100%;
-        height: 100%;
-      }
+    img {
+      width: 100%;
+      height: 100%;
     }
   }
 }

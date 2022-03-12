@@ -1,48 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import Button from '../../features/Button/Button';
-import {addToCart} from '../../../redux/productsRedux';
 
 import {getProduct, fetchProductById} from '../../../redux/productsRedux';
 
 import styles from './ProductSingle.module.scss';
+import { ProductSingleView } from '../../features/ProductSingleView/ProductSingleView';
 
-const Component = ({product, fetchOneProduct, addProduct}) => {
+const Component = ({product, fetchOneProduct}) => {
   fetchOneProduct();
 
-  //const {title, price, _id, image} = product;
-
-
-
-  const addToCartProduct = event => {
-    event.preventDefault();
-    console.log(product.title, 'dodano do koszyka');
-
-    // addProduct({
-    //   _id,
-    //   amount: 1,
-    //   priceSingle: price,
-    //   title,
-    //   image,
-    // });
-  };
-  console.log(product.title);
 
   return (
     <div className={styles.root}>
-      {product.length && (
-        <div className={styles.product}>
-          <h1>{product.title} </h1>
-          <div className={styles.image}>
-            <img src={product.image} alt={product.title} />
-          </div>
-          <h3>Cena: {product.price}PLN</h3>
-          <Button
-            name="Dodaj do koszyka"
-            click={addToCartProduct}
-          />
-        </div>
+      {product && (
+        <ProductSingleView product={product} />
       )}
     </div>
   );
@@ -50,7 +22,6 @@ const Component = ({product, fetchOneProduct, addProduct}) => {
 Component.propTypes = {
   product: PropTypes.object,
   fetchOneProduct: PropTypes.func,
-  addProduct: PropTypes.func,
 };
 
 const mapStateToProps = (state, props) => ({
@@ -59,7 +30,6 @@ const mapStateToProps = (state, props) => ({
 
 const mapDispatchToProps = (dispatch, props) => ({
   fetchOneProduct: () => dispatch(fetchProductById(props.match.params.id)),
-  addProduct: (product) => dispatch(addToCart(product)),
 
 });
 
