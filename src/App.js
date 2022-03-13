@@ -13,6 +13,7 @@ import Contact from './components/views/Contact/Contact';
 import Products from './components/views/Products/Products';
 import ShoopingCart from './components/views/ShoopingCart/ShoopingCart';
 import {ProductSingle} from './components/views/ProductSingle/ProductSingle';
+import Order from './components/views/Order/Order';
 
 const App = () => (
   <Provider store={store}>
@@ -24,6 +25,7 @@ const App = () => (
           <Route exact path="/product" component={Products} />
           <Route exact path="/product/:id" component={ProductSingle} />
           <Route exact path="/contact" component={Contact} />
+          <Route exact path="/order" component={Order} />
           <Route path="*" component={NotFound} />
         </Switch>
       </MainLayout>

@@ -4,24 +4,31 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faBars, faBasketShopping} from '@fortawesome/free-solid-svg-icons';
 
 import styles from './Header.module.scss';
-import { useSelector } from 'react-redux';
-import { countCartItems } from '../../../redux/productsRedux';
+import {useSelector} from 'react-redux';
+import {getAllCart} from '../../../redux/productsRedux';
 
 const Header = () => {
   const [toogleMenu, setToogleMenu] = useState(false);
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
 
-  const cartLength = useSelector(state => countCartItems(state));
-  let cartInfo;
+  const cart = useSelector(state => getAllCart(state));
 
-  if (cartLength) {
-    cartInfo = (
-      <p>{cartLength}</p>
-    );
+  const [cartCount, setCartCount] = useState(0);
+
+  useEffect(() => {
+    let count = 0;
+    cart.forEach((item) => {
+      count += item.amount;
+    });
+
+    setCartCount(count);
+  }, [cart, cartCount]);
+
+  let cartInfo;
+  if (cartCount) {
+    cartInfo = <p>{cartCount}</p>;
   } else {
-    cartInfo = (
-      null
-    );
+    cartInfo = null;
   }
 
   const toogleNav = () => {
@@ -64,6 +71,7 @@ const Header = () => {
           <FontAwesomeIcon onClick={toogleNav} className={styles.menuButton} icon={faBars} />
           <Link to="/shoopingcart" className={styles.cartButton}>
             <FontAwesomeIcon icon={faBasketShopping} />
+            
             {cartInfo}
           </Link>
         </div>

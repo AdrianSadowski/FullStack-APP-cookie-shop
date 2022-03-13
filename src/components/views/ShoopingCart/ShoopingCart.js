@@ -5,6 +5,7 @@ import SectionHeader from '../../features/SectionHeader/SectionHeader';
 import styles from './ShoopingCart.module.scss';
 import { useSelector, useDispatch } from 'react-redux';
 import { getAllCart, removeFromCart } from '../../../redux/productsRedux';
+import { Link } from 'react-router-dom';
 
 const ShoopingCart = () => {
 
@@ -48,7 +49,9 @@ const ShoopingCart = () => {
             Całkowita wartość koszyka:
             <span> {totalPrice.toFixed(2)} PLN </span>
           </p>
-          <Button name="Zamów" className={styles.cardButton} />
+          <Link to={`/order`}>
+            <Button name="Zamów" className={styles.cardButton} />
+          </Link>
         </div>
       </div>
     </div>
