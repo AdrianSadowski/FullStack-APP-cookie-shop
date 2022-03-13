@@ -1,9 +1,11 @@
 import React, {useState, useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {createOrder, getAllCart} from '../../../redux/productsRedux';
-import { useNavigate } from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 import {useForm} from 'react-hook-form';
 import ReCAPTCHA from 'react-google-recaptcha';
+import shortid from 'shortid';
+import {error} from './errors';
 
 import styles from './ProductOrder.module.scss';
 
@@ -41,16 +43,23 @@ const ProductOrder = () => {
     priceAll: `Wartość twojego zamówienia: ${totalPrice.toFixed(2)} PLN`,
   };
 
-  const onSubmit = async (data) => {
-    if (captha === true) {
+  const onSubmit = async user => {
+    const idOrder = shortid();
+    console.log(cartData);
+    if (captha === true && cartData.length) {
       await confirmOrder({
-        data,
+        idOrder: idOrder,
+        user,
         totalPrice,
         cartData,
       });
-      navigate('/', {replace: true});
+      navigate(`/order/${idOrder}`, {replace: true});
+    } if(captha === false) {
+      alert('Please check your reCAPTCHA veryfication');
+    } if( !cartData.length){
+      alert('You card is empty.');
     } else {
-      alert('Brak weryfikacji');
+      alert('Error 404. Please try again later.');
     }
   };
   return (
@@ -62,32 +71,81 @@ const ProductOrder = () => {
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className={styles.box}>
           <label>
-            <span>Imię i Nazwisko</span>
-            <input type="text" {...register('Name', {required: true, maxLength: 80})} />
-            {errors.Name?.type === 'required' && data.inputErrorInfo}
+            <span>First Name</span>
+            <input type="text" {...register('firstName', {required: true, maxLength: 80})} />
+            {errors.firstName && errors.firstName.type === 'required' && (
+              <p>{error.firstName.required}</p>
+            )}
+            {errors.firstName && errors.firstName.type === 'maxLength' && (
+              <p>{error.firstName.maxLength}</p>
+            )}
           </label>
           <label>
-            <span>E-mail</span>
-            <input type="text" {...register('Email', {required: true, pattern: /^\S+@\S+$/i})} />
-            {errors.Email?.type === 'required' && data.inputErrorInfo}
+            <span>Last Name</span>
+            <input type="text" {...register('lastName', {required: true, maxLength: 80})} />
+            {errors.lastName && errors.lastName.type === 'required' && (
+              <p>{error.lastName.required}</p>
+            )}
+            {errors.lastName && errors.lastName.type === 'maxLength' && (
+              <p>{error.lastName.maxLength}</p>
+            )}
           </label>
           <label>
-            <span>Numer telefonu</span>
+            <span>Email Address</span>
+            <input
+              type="text"
+              {...register('Email', {
+                required: 'Email jest wymagany',
+                pattern: /^\S+@\S+$/i,
+              })}
+            />
+            {errors.Email && errors.Email.type === 'required' && <p>{error.mail.required}</p>}
+            {errors.Email && errors.Email.type === 'pattern' && <p>{error.mail.correct}</p>}
+          </label>
+          <label>
+            <span>Phone number</span>
             <input
               type="tel"
-              {...register('Mobile', {required: true, minLength: 6, maxLength: 12})}
+              {...register('Mobile', {
+                required: true,
+                minLength: 6,
+                maxLength: 12,
+              })}
             />
-            {errors.Mobile?.type === 'required' && data.inputErrorInfo}
+            {errors.Mobile && errors.Mobile.type === 'required' && (
+              <p>{error.Mobile.required}</p>
+            )}
+            {errors.Mobile && errors.Mobile.type === 'maxLength' && (
+              <p>{error.Mobile.maxLength}</p>
+            )}
+            {errors.Mobile && errors.Mobile.type === 'minLength' && (
+              <p>{error.Mobile.minLength}</p>
+            )}
           </label>
           <label>
-            <span>Adres</span>
-            <input type="text" {...register('Tittle', {required: true, maxLength: 100})} />
-            {errors.Tittle?.type === 'required' && data.inputErrorInfo}
+            <span>Adress</span>
+            <input type="text" {...register('Adress', {required: true, maxLength: 100})} />
+            {errors.Adress && errors.Adress.type === 'required' && (
+              <p>{error.Adress.required}</p>
+            )}
+            {errors.Adress && errors.Adress.type === 'maxLength' && (
+              <p>{error.Adress.required}</p>
+            )}
+          </label>
+          <label>
+            <span>City</span>
+            <input type="text" {...register('City', {required: true, maxLength: 100})} />
+            {errors.City && errors.City.type === 'required' && (
+              <p>{error.City.required}</p>
+            )}
+            {errors.City && errors.City.type === 'maxLength' && (
+              <p>{error.City.required}</p>
+            )}
           </label>
           <div className={styles.sendForm}>
             <label className={styles.veryfication}>
-              <span>weryfikacja</span>
-              <div className={styles.google - captha}>
+              <span>veryfication</span>
+              <div className={styles.googlecaptha}>
                 <ReCAPTCHA
                   sitekey="6Lf_yKgeAAAAABkoFCKyJO01ietAV531d_9yJdrF"
                   onChange={e => setCaptcha(!captha)}

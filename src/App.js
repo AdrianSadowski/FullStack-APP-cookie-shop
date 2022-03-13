@@ -2,7 +2,7 @@ import './styles/bootstrap.scss';
 import './styles/global.scss';
 
 import React from 'react';
-import {BrowserRouter, Switch, Route} from 'react-router-dom';
+import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import {Provider} from 'react-redux';
 import {store} from './redux/store';
 
@@ -19,15 +19,15 @@ const App = () => (
   <Provider store={store}>
     <BrowserRouter>
       <MainLayout>
-        <Switch>
-          <Route exact path="/" component={Homepage} />
-          <Route exact path="/ShoopingCart" component={ShoopingCart} />
-          <Route exact path="/product" component={Products} />
-          <Route exact path="/product/:id" component={ProductSingle} />
-          <Route exact path="/contact" component={Contact} />
-          <Route exact path="/order" component={Order} />
-          <Route path="*" component={NotFound} />
-        </Switch>
+        <Routes>
+          <Route exact path="/" element={<Homepage />} />
+          <Route exact path="/ShoopingCart" element={< ShoopingCart />} />
+          <Route exact path="/product" element={< Products />} />
+          <Route exact path="/product/:id" element={< ProductSingle />} />
+          <Route exact path="/contact" element={< Contact />} />
+          <Route exact path="/order" element={< Order />} />
+          <Route path="*" element={< NotFound />} />
+        </Routes>
       </MainLayout>
     </BrowserRouter>
   </Provider>

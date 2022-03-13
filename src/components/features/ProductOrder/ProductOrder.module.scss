@@ -11,6 +11,13 @@
   margin: 20px 0;
   display: flex;
   flex-direction: column;
+  p{
+    color: #c01a29;
+    background-color: #fdf0f2;
+    border: 1px solid #f1ced1;
+    padding: 5px;
+    display: inline-block;
+  }
 
   .false {
     background: red;
@@ -25,7 +32,9 @@
 
     input {
       border-radius: 5px;
-      border: none;
+      border: 1px solid #97CCDF;
+      padding: 10px 0;
+      margin-bottom: 5px;
     }
   }
   span {
@@ -40,7 +49,7 @@
     display: flex;
     justify-content: space-between;
 
-    .google-captha {
+    .googlecaptha {
       max-width: 350px;
     }
 

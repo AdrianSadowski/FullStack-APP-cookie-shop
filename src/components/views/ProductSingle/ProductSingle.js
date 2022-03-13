@@ -1,42 +1,29 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import {connect} from 'react-redux';
-
+import React, {useEffect} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
+import {useParams} from 'react-router-dom';
 import {getProduct, fetchProductById} from '../../../redux/productsRedux';
 
 import styles from './ProductSingle.module.scss';
-import { ProductSingleView } from '../../features/ProductSingleView/ProductSingleView';
+import {ProductSingleView} from '../../features/ProductSingleView/ProductSingleView';
 
-const Component = ({product, fetchOneProduct}) => {
-  fetchOneProduct();
+const Component = () => {
+  const {id} = useParams();
+  const dispatch = useDispatch();
+  const product = useSelector(state => getProduct(state));
+  console.log(product);
 
+  useEffect(() => {
+    dispatch(fetchProductById(id));
+  }, [id]);
 
   return (
     <div className={styles.root}>
-      {product && (
-        <ProductSingleView product={product} />
-      )}
+      {product && <ProductSingleView product={product} />}
     </div>
   );
 };
-Component.propTypes = {
-  product: PropTypes.object,
-  fetchOneProduct: PropTypes.func,
-};
-
-const mapStateToProps = (state, props) => ({
-  product: getProduct(state),
-});
-
-const mapDispatchToProps = (dispatch, props) => ({
-  fetchOneProduct: () => dispatch(fetchProductById(props.match.params.id)),
-
-});
-
-const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
 
 export {
-  //Component as Post,
-  Container as ProductSingle,
+  Component as ProductSingle,
   Component as ProductSingleComponent,
 };
