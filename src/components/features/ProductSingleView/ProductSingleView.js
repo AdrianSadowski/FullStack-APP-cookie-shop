@@ -21,7 +21,6 @@ const Component = ({product, addProduct}) => {
       image,
     });
   };
-  console.log(product.title);
 
   return (
     <div className={styles.product}>

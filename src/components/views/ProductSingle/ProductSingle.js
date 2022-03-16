@@ -10,7 +10,6 @@ const Component = () => {
   const {id} = useParams();
   const dispatch = useDispatch();
   const product = useSelector(state => getProduct(state));
-  console.log(product);
 
   useEffect(() => {
     dispatch(fetchProductById(id));
