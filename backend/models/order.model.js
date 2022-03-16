@@ -1,9 +1,7 @@
 const mongoose = require('mongoose');
 
 const orderSchema = new mongoose.Schema({
-  title: {type: String, required: true},
-  price: {type: String, required: true},
-  image: {type: String},
+  test: { type: String, required: true },
 });
 
 module.exports = mongoose.model('Order', orderSchema);
