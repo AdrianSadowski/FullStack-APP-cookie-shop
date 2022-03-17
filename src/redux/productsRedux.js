@@ -4,6 +4,7 @@ import Axios from 'axios';
 export const getAll = ({products}) => products.data;
 export const getProduct = ({products}) => products.currentProduct;
 export const getAllCart = ({products}) => products.cart;
+export const getOrder = ({products}) => products.currentOrder;
 
 /* action name creator */
 const reducerName = 'products';
@@ -19,6 +20,7 @@ const ADD_TO_CART = createActionName('ADD_TO_CART');
 const REMOVE_FROM_CART = createActionName('REMOVE_FROM_CART');
 const ADJUST_QTY = createActionName('ADJUST_QTY');
 const CREATE_ORDER = createActionName('CREATE_ORDER');
+const FETCH_ORDDER_BY_ID = createActionName('FETCH_ORDDER_BY_ID');
 
 /* action creators */
 export const fetchStarted = payload => ({payload, type: FETCH_START});
@@ -30,6 +32,8 @@ export const addToCart = payload => ({payload, type: ADD_TO_CART});
 export const removeFromCart = payload => ({payload, type: REMOVE_FROM_CART});
 export const adjustQTY = (_id, value) => ({payload: {_id: _id, amount: value}, type: ADJUST_QTY});
 export const createOrder = payload => ({payload, type: CREATE_ORDER});
+const fetchOneOrder = payload => ({payload, type: FETCH_ORDDER_BY_ID});
+
 
 /* thunk creators */
 export const fetchAllProducts = () => async (dispatch, getState) => {
@@ -77,6 +81,20 @@ export const fetchAddOrder = payload => async dispatch => {
       console.log(payload);
       dispatch(fetchError(err.message || true));
     });
+};
+
+export const fetchOrderById = orderId => async (dispatch) => {
+  console.log('looking for order', orderId);
+  dispatch(fetchStarted());
+  await Axios.get(`http://localhost:8000/api/orders/${orderId}`)
+    .then(res => {
+      dispatch(fetchOneOrder(res.data));
+      dispatch(fetchSuccess(res.data));
+    })
+    .catch(err => {
+      dispatch(fetchError(err.message || true));
+    });
+
 };
 
 /* reducer */
@@ -158,6 +176,16 @@ export const reducer = (statePart = [], action = {}) => {
         order: [...statePart.order, action.payload],
         cart: [],
       };
+    case FETCH_ORDDER_BY_ID: {
+      return{
+        ...statePart,
+        loading: {
+          active: false,
+          error: false,
+        },
+        currentOrder: action.payload,
+      };
+    }
     default:
       return statePart;
   }

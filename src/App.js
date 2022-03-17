@@ -14,6 +14,7 @@ import Products from './components/views/Products/Products';
 import ShoopingCart from './components/views/ShoopingCart/ShoopingCart';
 import {ProductSingle} from './components/views/ProductSingle/ProductSingle';
 import Order from './components/views/Order/Order';
+import OrderById from './components/views/OrderById/OrderById';
 
 const App = () => (
   <Provider store={store}>
@@ -26,7 +27,7 @@ const App = () => (
           <Route exact path="/product/:id" element={< ProductSingle />} />
           <Route exact path="/contact" element={< Contact />} />
           <Route exact path="/order" element={< Order />} />
-          <Route exact path="/order/:id" element={< Homepage />} />
+          <Route exact path="/order/:id" element={< OrderById />} />
           <Route path="*" element={< NotFound />} />
         </Routes>
       </MainLayout>
