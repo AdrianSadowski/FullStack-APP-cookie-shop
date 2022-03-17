@@ -26,7 +26,7 @@ const App = () => (
           <Route exact path="/product/:id" element={< ProductSingle />} />
           <Route exact path="/contact" element={< Contact />} />
           <Route exact path="/order" element={< Order />} />
-          <Route exact path="/order/:id" element={< Order />} />
+          <Route exact path="/order/:id" element={< Homepage />} />
           <Route path="*" element={< NotFound />} />
         </Routes>
       </MainLayout>

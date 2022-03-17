@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {fetchAddOrder, getAllCart} from '../../../redux/productsRedux';
+import { useNavigate  } from 'react-router-dom';
 import {useForm} from 'react-hook-form';
 import ReCAPTCHA from 'react-google-recaptcha';
 import shortid from 'shortid';
@@ -16,6 +17,7 @@ const ProductOrder = () => {
   const [totalPrice, setTotalPrice] = useState(0);
   const [totalItems, setTotalItems] = useState(0);
   const [captha, setCaptcha] = useState(false);
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -41,18 +43,17 @@ const ProductOrder = () => {
     priceAll: `Wartość twojego zamówienia: ${totalPrice.toFixed(2)} PLN`,
   };
 
-  const onSubmit = user => {
+  const onSubmit = async (user) => {
     const idOrder = shortid();
-    console.log(cartData);
-    if (captha === true) {
-      confirmOrder({
+    if (cartData.length && captha === true) {
+      await confirmOrder({
         idOrder: idOrder,
         user,
         totalPrice,
         cartData,
       });
+      navigate(`${idOrder}`, { state: {}, replace: false });
       //navigate do poprawy
-      //navigate(`/order/${idOrder}`, {replace: true});
     } else {
       console.log(captha);
       console.log(cartData);
