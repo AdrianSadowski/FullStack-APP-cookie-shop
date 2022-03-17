@@ -1,4 +1,5 @@
 export const error = {
+  
   firstName : {
     required: 'First name is required',
     maxLength: `Max lenghth it's 80`,

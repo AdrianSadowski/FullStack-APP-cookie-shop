@@ -29,7 +29,8 @@ app.use('*', (req, res) => {
 });
 
 /* MONGOOSE */
-mongoose.connect('mongodb://localhost:27017/zooShop', { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect('mongodb+srv://adrian:62eSlNsoyR3hG63f@cluster0.6l8kf.mongodb.net/zooShop?retryWrites=true&w=majority',
+  { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;
 db.once('open', () => {
   console.log('Successfully connected to the database');
@@ -39,5 +40,5 @@ db.on('error', err => console.log('Error: ' + err));
 /* START SERVER */
 const port = process.env.PORT || 8000;
 app.listen(port, () => {
-  console.log('Server is running on port: '+port);
+  console.log('Server is running on port: ' + port);
 });

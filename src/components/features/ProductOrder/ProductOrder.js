@@ -39,6 +39,8 @@ const ProductOrder = () => {
 
   const data = {
     inputErrorInfo: 'Proszę wypełnić powyższe pole',
+    capthaError: 'Check your reCAPRHA code',
+    error404: 'Error 404, Please try again later.',
     order: `Zamówiłeś ${totalItems} produktów`,
     priceAll: `Wartość twojego zamówienia: ${totalPrice.toFixed(2)} PLN`,
   };
@@ -52,13 +54,14 @@ const ProductOrder = () => {
         totalPrice,
         cartData,
       });
-      navigate(`${idOrder}`, { state: {}, replace: false });
-      //navigate do poprawy
+      navigate(idOrder, { state: {}, replace: false });
+    }else if ( captha === false) {
+      alert(data.capthaError);
     } else {
       console.log(captha);
       console.log(cartData);
       console.log(confirmOrder);
-      alert('Error 404. Please try again later.');
+      alert(data.error404);
     }
   };
   return (
