@@ -8,6 +8,7 @@ import {addToCart} from '../../../redux/productsRedux';
 
 const ProductBox = ({product}) => {
   const {title, price, _id, image} = product;
+  console.log(product);
 
   const dispatch = useDispatch();
   const addProduct = product => dispatch(addToCart(product));

@@ -15,18 +15,24 @@ const OrderById = () => {
     dispatch(fetchOrderById(id));
   }, [id]);
   console.log(order);
-  return (
-    <div className={styles.root}>
-      <SectionHeader name="Zamówienie id: " />
-      <div className={styles.order}>
-        {order && (
-          <div>
-            <OrderSingleView order={order} />
-          </div>
-        )}
+
+  if (order === undefined) {
+    //document.location.reload(true);
+    return <div>Twoje zamówienie zostało przyjętę do realizacji.</div>;
+  } else {
+    return (
+      <div className={styles.root}>
+        <SectionHeader name="Zamówienie id: " />
+        <div className={styles.order}>
+          {order && (
+            <div>
+              <OrderSingleView order={order} />
+            </div>
+          )}
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
 };
 
 export default OrderById;

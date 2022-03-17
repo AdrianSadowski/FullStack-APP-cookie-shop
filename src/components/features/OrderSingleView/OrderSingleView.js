@@ -19,7 +19,7 @@ const OrderSingleView = ({order}) => {
 };
 
 OrderSingleView.propTypes = {
-  order: PropTypes.string.isRequired,
+  order: PropTypes.array.isRequired,
 };
 
 export default OrderSingleView;

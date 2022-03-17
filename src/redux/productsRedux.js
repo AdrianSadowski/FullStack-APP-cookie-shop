@@ -68,14 +68,14 @@ export const fetchProductById = productId => async (dispatch, getState) => {
   }
 };
 
-export const fetchAddOrder = payload => async dispatch => {
-  console.log('fetch adding', payload);
+export const fetchAddOrder = payload => async (dispatch, getState) => {
+  const {products} = getState();
 
   dispatch(fetchStarted());
   await Axios.post('http://localhost:8000/api/orders/add', payload)
     .then(payload => {
       dispatch(createOrder(payload));
-      dispatch(fetchSuccess(payload));
+      dispatch(fetchSuccess(products.data));
     })
     .catch((err, res) => {
       console.log(payload);
@@ -83,13 +83,17 @@ export const fetchAddOrder = payload => async dispatch => {
     });
 };
 
-export const fetchOrderById = orderId => async (dispatch) => {
+export const fetchOrderById = orderId => async (dispatch, getState) => {
+  const {products} = getState();
+  console.log(products);
+
   console.log('looking for order', orderId);
   dispatch(fetchStarted());
   await Axios.get(`http://localhost:8000/api/orders/${orderId}`)
     .then(res => {
       dispatch(fetchOneOrder(res.data));
-      dispatch(fetchSuccess(res.data));
+      //dispatch(fetchSuccess(res.data));
+      //dispatch zwraca order zamiast produktów
     })
     .catch(err => {
       dispatch(fetchError(err.message || true));
@@ -176,7 +180,7 @@ export const reducer = (statePart = [], action = {}) => {
         order: [...statePart.order, action.payload],
         cart: [],
       };
-    case FETCH_ORDDER_BY_ID: {
+    case FETCH_ORDDER_BY_ID: 
       return{
         ...statePart,
         loading: {
@@ -185,7 +189,6 @@ export const reducer = (statePart = [], action = {}) => {
         },
         currentOrder: action.payload,
       };
-    }
     default:
       return statePart;
   }

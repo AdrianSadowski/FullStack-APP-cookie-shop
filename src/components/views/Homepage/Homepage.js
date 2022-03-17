@@ -11,6 +11,7 @@ import ProductBox from '../../features/ProductBox/ProductBox';
 
 const Component = ({products, fetchProducts}) => {
   fetchProducts();
+
   return (
     <div className={styles.root}>
       <h2>Homepage</h2>

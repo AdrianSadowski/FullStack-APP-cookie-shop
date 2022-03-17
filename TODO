@@ -1,3 +1,8 @@
-Dodawanie koszyka do bazy danych
-Wyświetlanie zamówienia po dokonaniu go.
+Wyglad OrderSingleView
 Wyglad single product
+
+Przekierowanie po zamówieniu do uniwersalnego linka gdzie będzie link odnoszący sie do detalów z
+
+nasłuchiwanie w OrderSingleView na FETCH_start i SUCCES aby strona się "ładowała do sukcesu"
+zakomentowant dispatch zwraca order zamiast produktow
+
