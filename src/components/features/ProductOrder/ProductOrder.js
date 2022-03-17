@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {createOrder, getAllCart} from '../../../redux/productsRedux';
-import {useNavigate} from 'react-router-dom';
+import {fetchAddOrder, getAllCart} from '../../../redux/productsRedux';
 import {useForm} from 'react-hook-form';
 import ReCAPTCHA from 'react-google-recaptcha';
 import shortid from 'shortid';
@@ -10,10 +9,9 @@ import {error} from './errors';
 import styles from './ProductOrder.module.scss';
 
 const ProductOrder = () => {
-  let navigate = useNavigate();
   const cartData = useSelector(state => getAllCart(state));
   const dispatch = useDispatch();
-  const confirmOrder = order => dispatch(createOrder(order));
+  const confirmOrder = order => dispatch(fetchAddOrder(order));
 
   const [totalPrice, setTotalPrice] = useState(0);
   const [totalItems, setTotalItems] = useState(0);
@@ -43,22 +41,22 @@ const ProductOrder = () => {
     priceAll: `Wartość twojego zamówienia: ${totalPrice.toFixed(2)} PLN`,
   };
 
-  const onSubmit = async user => {
+  const onSubmit = user => {
     const idOrder = shortid();
     console.log(cartData);
-    if (captha === true && cartData.length) {
-      await confirmOrder({
+    if (captha === true) {
+      confirmOrder({
         idOrder: idOrder,
         user,
         totalPrice,
         cartData,
       });
-      navigate(`/order/${idOrder}`, {replace: true});
-    } if(captha === false) {
-      alert('Please check your reCAPTCHA veryfication');
-    } if( !cartData.length){
-      alert('You card is empty.');
+      //navigate do poprawy
+      //navigate(`/order/${idOrder}`, {replace: true});
     } else {
+      console.log(captha);
+      console.log(cartData);
+      console.log(confirmOrder);
       alert('Error 404. Please try again later.');
     }
   };

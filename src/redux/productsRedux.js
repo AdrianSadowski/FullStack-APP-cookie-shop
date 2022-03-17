@@ -64,6 +64,21 @@ export const fetchProductById = productId => async (dispatch, getState) => {
   }
 };
 
+export const fetchAddOrder = payload => async dispatch => {
+  console.log('fetch adding', payload);
+
+  dispatch(fetchStarted());
+  await Axios.post('http://localhost:8000/api/orders/add', payload)
+    .then(payload => {
+      dispatch(createOrder(payload));
+      dispatch(fetchSuccess(payload));
+    })
+    .catch((err, res) => {
+      console.log(payload);
+      dispatch(fetchError(err.message || true));
+    });
+};
+
 /* reducer */
 export const reducer = (statePart = [], action = {}) => {
   switch (action.type) {
@@ -110,8 +125,7 @@ export const reducer = (statePart = [], action = {}) => {
         return item._id === action.payload._id;
       });
 
-      if (itemIndex > -1 ) {
-        console.log(itemIndex);
+      if (itemIndex > -1) {
         statePart.cart[itemIndex].amount += action.payload.amount;
         return {
           ...statePart,
@@ -139,7 +153,7 @@ export const reducer = (statePart = [], action = {}) => {
         ),
       };
     case CREATE_ORDER:
-      return{
+      return {
         ...statePart,
         order: [...statePart.order, action.payload],
         cart: [],
