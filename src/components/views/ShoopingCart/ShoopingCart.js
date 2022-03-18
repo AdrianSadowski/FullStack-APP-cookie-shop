@@ -3,12 +3,11 @@ import Button from '../../features/Button/Button';
 import ShoopingCartProduct from '../../features/ShoopingCartProduct/ShoopingCartProduct';
 import SectionHeader from '../../features/SectionHeader/SectionHeader';
 import styles from './ShoopingCart.module.scss';
-import { useSelector, useDispatch } from 'react-redux';
-import { getAllCart, removeFromCart } from '../../../redux/productsRedux';
-import { Link } from 'react-router-dom';
+import {useSelector, useDispatch} from 'react-redux';
+import {getAllCart, removeFromCart} from '../../../redux/productsRedux';
+import {Link} from 'react-router-dom';
 
 const ShoopingCart = () => {
-
   const cartData = useSelector(state => getAllCart(state));
   const dispatch = useDispatch();
   const removeCartItem = productId => dispatch(removeFromCart(productId));
@@ -16,7 +15,7 @@ const ShoopingCart = () => {
   const [totalPrice, setTotalPrice] = useState(0);
   const [totalItems, setTotalItems] = useState(0);
 
-  useEffect(() =>{
+  useEffect(() => {
     let items = 0;
     let price = 0;
 
@@ -27,7 +26,7 @@ const ShoopingCart = () => {
 
     setTotalPrice(price);
     setTotalItems(items);
-  }, [cartData, totalPrice, totalItems, setTotalItems, setTotalPrice ]);
+  }, [cartData, totalPrice, totalItems, setTotalItems, setTotalPrice]);
 
   return (
     <div className={styles.root}>
@@ -35,9 +34,9 @@ const ShoopingCart = () => {
       <div className={styles.cart}>
         <div className={styles.cartProducts}>
           {cartData.map((item, index) => (
-            <ShoopingCartProduct 
-              key={index} 
-              {...item} 
+            <ShoopingCartProduct
+              key={index}
+              {...item}
               removeItem={() => removeCartItem(item._id)}
             />
           ))}
@@ -49,9 +48,11 @@ const ShoopingCart = () => {
             Całkowita wartość koszyka:
             <span> {totalPrice.toFixed(2)} PLN </span>
           </p>
-          <Link to={`/order`}>
-            <Button name="Zamów" className={styles.cardButton} />
-          </Link>
+          {cartData.length ? (
+            <Link to={`/order`}>
+              <Button name="Zamów" className={styles.cardButton} />
+            </Link>
+          ) : null}
         </div>
       </div>
     </div>

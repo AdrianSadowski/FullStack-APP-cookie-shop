@@ -58,9 +58,6 @@ const ProductOrder = () => {
     }else if ( captha === false) {
       alert(data.capthaError);
     } else {
-      console.log(captha);
-      console.log(cartData);
-      console.log(confirmOrder);
       alert(data.error404);
     }
   };
