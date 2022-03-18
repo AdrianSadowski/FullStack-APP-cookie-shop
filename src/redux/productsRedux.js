@@ -84,15 +84,15 @@ export const fetchAddOrder = payload => async (dispatch, getState) => {
 };
 
 export const fetchOrderById = orderId => async (dispatch, getState) => {
-  const {products} = getState();
-  console.log(products);
+  //const {products} = getState();
+  //console.log(products);
 
   console.log('looking for order', orderId);
   dispatch(fetchStarted());
   await Axios.get(`http://localhost:8000/api/orders/${orderId}`)
     .then(res => {
       dispatch(fetchOneOrder(res.data));
-      //dispatch(fetchSuccess(res.data));
+      dispatch(fetchSuccess());
       //dispatch zwraca order zamiast produktów
     })
     .catch(err => {

@@ -2,16 +2,19 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
-// import { connect } from 'react-redux';
-// import { reduxSelector, reduxActionCreator } from '../../../redux/exampleRedux.js';
-
 import styles from './Homepage.module.scss';
 import {getAll, fetchAllProducts} from '../../../redux/productsRedux';
 import ProductBox from '../../features/ProductBox/ProductBox';
+import Loader from '../../common/Loader/Loader';
 
 const Component = ({products, fetchProducts}) => {
   fetchProducts();
-
+  if(products === undefined){
+    setTimeout(function() { window.location.reload(false);},1000);
+    return(
+      <Loader />
+    );
+  }
   return (
     <div className={styles.root}>
       <h2>Homepage</h2>

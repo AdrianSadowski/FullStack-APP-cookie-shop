@@ -8,7 +8,7 @@ import {store} from './redux/store';
 
 import {MainLayout} from './components/layout/MainLayout/MainLayout';
 import {Homepage} from './components/views/Homepage/Homepage';
-import {NotFound} from './components/views/NotFound/NotFound';
+import NotFound from './components/views/NotFound/NotFound';
 import Contact from './components/views/Contact/Contact';
 import Products from './components/views/Products/Products';
 import ShoopingCart from './components/views/ShoopingCart/ShoopingCart';
