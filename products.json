@@ -1,0 +1,43 @@
+[
+  {
+    "title": "Gryzak Czyszczący zęby",
+    "price": "25.20",
+    "image": "../assets/gryzak-czyszczacy-zeby.jpg",
+    "category": "gryzaki",
+    "promoted": true
+  },
+  {
+    "title": "Piłeczka dla psa",
+    "price": "25.00",
+    "image": "../assets/dog-ball.png",
+    "category": "zabawki",
+    "promoted": true
+  },
+  {
+    "title": "Gumowy kurczas",
+    "price": "115.00",
+    "image": "../assets/Gumowy-kurczak.jpg",
+    "category": "zabawki",
+    "promoted": true
+  },
+  {
+    "title": "Dysk do aportowania - frisbee w kolorze niebieskim",
+    "price": "12.99",
+    "image": "../assets/freesbie-niebieskie.jpg",
+    "category": "zabawki",
+    "promoted": true
+  },
+  {
+    "title": "Transporter o rozmiarze M, dla psa lub kota",
+    "price": "49.99",
+    "image": "../assets/transporter-M.jpg",
+    "category": "transporter",
+    "promoted": true
+  },
+  {
+    "title": "Szczotka w kolorze czerwonym do sierści długiej",
+    "price": "9.49",
+    "image": "../assets/szczotka-czerwona.jpg",
+    "category": "szczotki"
+  }
+]

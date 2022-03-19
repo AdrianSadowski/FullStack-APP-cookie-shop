@@ -6,25 +6,28 @@ import styles from './Homepage.module.scss';
 import {getAll, fetchAllProducts} from '../../../redux/productsRedux';
 import ProductBox from '../../features/ProductBox/ProductBox';
 import Loader from '../../common/Loader/Loader';
+import SectionHeader from '../../features/SectionHeader/SectionHeader';
 
 const Component = ({products, fetchProducts}) => {
   fetchProducts();
-  if(products === undefined){
-    setTimeout(function() { window.location.reload(false);},1000);
-    return(
-      <Loader />
-    );
+  if (products === undefined) {
+    setTimeout(function () {
+      window.location.reload(false);
+    }, 1000);
+    return <Loader />;
   }
   return (
-    <div className={styles.root}>
-      <h2>Homepage</h2>
-      {products.length && (
-        <div className={styles.product}>
-          {products.map(product => (
-            <ProductBox key={product._id} product={product}/>
-          ))}
-        </div>
-      )}
+    <div>
+      <SectionHeader name="Polecane produkty" />
+      <div className={styles.container}>
+        {products.length && (
+          <div className={styles.product}>
+            {products.map(product => (
+              <ProductBox key={product._id} product={product} />
+            ))}
+          </div>
+        )}
+      </div>
     </div>
   );
 };

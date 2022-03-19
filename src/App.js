@@ -10,7 +10,7 @@ import {MainLayout} from './components/layout/MainLayout/MainLayout';
 import {Homepage} from './components/views/Homepage/Homepage';
 import NotFound from './components/views/NotFound/NotFound';
 import Contact from './components/views/Contact/Contact';
-import Products from './components/views/Products/Products';
+import {Products} from './components/views/Products/Products';
 import ShoopingCart from './components/views/ShoopingCart/ShoopingCart';
 import {ProductSingle} from './components/views/ProductSingle/ProductSingle';
 import Order from './components/views/Order/Order';
@@ -23,7 +23,7 @@ const App = () => (
         <Routes>
           <Route exact path="/" element={<Homepage />} />
           <Route exact path="/ShoopingCart" element={< ShoopingCart />} />
-          <Route exact path="/product" element={< Products />} />
+          <Route exact path="/products" element={< Products />} />
           <Route exact path="/product/:id" element={< ProductSingle />} />
           <Route exact path="/contact" element={< Contact />} />
           <Route exact path="/order" element={< Order />} />
