@@ -22,13 +22,13 @@ const App = () => (
       <MainLayout>
         <Routes>
           <Route exact path="/" element={<Homepage />} />
-          <Route exact path="/ShoopingCart" element={< ShoopingCart />} />
-          <Route exact path="/products" element={< Products />} />
-          <Route exact path="/product/:id" element={< ProductSingle />} />
-          <Route exact path="/contact" element={< Contact />} />
-          <Route exact path="/order" element={< Order />} />
-          <Route exact path="/order/:id" element={< OrderById />} />
-          <Route path="*" element={< NotFound />} />
+          <Route exact path="/ShoopingCart" element={<ShoopingCart />} />
+          <Route exact path="/products" element={<Products />} />
+          <Route exact path="/product/:id" element={<ProductSingle />} />
+          <Route exact path="/contact" element={<Contact />} />
+          <Route exact path="/order" element={<Order />} />
+          <Route exact path="/order/:id" element={<OrderById />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </MainLayout>
     </BrowserRouter>
