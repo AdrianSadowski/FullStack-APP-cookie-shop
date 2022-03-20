@@ -16,15 +16,22 @@ const Component = ({products, fetchProducts}) => {
     }, 1000);
     return <Loader />;
   }
+
+  // let isPromotedFilter = products.filter(function(product) {
+  //   return product.promoted === true ;
+  // });
+  // console.log(isPromotedFilter);
   return (
     <div>
       <SectionHeader name="Polecane produkty" />
       <div className={styles.container}>
         {products.length && (
           <div className={styles.product}>
-            {products.map(product => (
-              <ProductBox key={product._id} product={product} />
-            ))}
+            {products
+              .filter(product => product.promoted === true)
+              .map(filtredProduct => (
+                <ProductBox key={filtredProduct._id} product={filtredProduct} />
+              ))}
           </div>
         )}
       </div>
