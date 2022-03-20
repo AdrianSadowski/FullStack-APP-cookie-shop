@@ -34,7 +34,6 @@ export const adjustQTY = (_id, value) => ({payload: {_id: _id, amount: value}, t
 export const createOrder = payload => ({payload, type: CREATE_ORDER});
 const fetchOneOrder = payload => ({payload, type: FETCH_ORDDER_BY_ID});
 
-
 /* thunk creators */
 export const fetchAllProducts = () => async (dispatch, getState) => {
   const {products} = getState();
@@ -98,7 +97,6 @@ export const fetchOrderById = orderId => async (dispatch, getState) => {
     .catch(err => {
       dispatch(fetchError(err.message || true));
     });
-
 };
 
 /* reducer */
@@ -180,8 +178,8 @@ export const reducer = (statePart = [], action = {}) => {
         order: [...statePart.order, action.payload],
         cart: [],
       };
-    case FETCH_ORDDER_BY_ID: 
-      return{
+    case FETCH_ORDDER_BY_ID:
+      return {
         ...statePart,
         loading: {
           active: false,

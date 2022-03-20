@@ -30,7 +30,7 @@ const ShoopingCart = () => {
 
   return (
     <div className={styles.root}>
-      <SectionHeader name="Koszyk" />
+      <SectionHeader name="Your Shopping Basket" />
       <div className={styles.cart}>
         <div className={styles.cartProducts}>
           {cartData.map((item, index) => (
@@ -42,15 +42,15 @@ const ShoopingCart = () => {
           ))}
         </div>
         <div className={styles.cartSummary}>
-          <h3>Twój koszyk</h3>
-          <h5>Ilość przedmiotów: {totalItems}</h5>
+          <h3>Basket</h3>
+          <h5>Items: {totalItems}</h5>
           <p className={styles.cartSummary_price}>
-            Całkowita wartość koszyka:
-            <span> {totalPrice.toFixed(2)} PLN </span>
+            Total price:
+            <span> {totalPrice.toFixed(2)} $ </span>
           </p>
           {cartData.length ? (
             <Link to={`/order`}>
-              <Button name="Zamów" className={styles.cardButton} />
+              <Button name="Order" className={styles.cardButton} />
             </Link>
           ) : null}
         </div>

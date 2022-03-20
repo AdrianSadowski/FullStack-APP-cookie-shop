@@ -34,7 +34,7 @@ const OrderById = () => {
   } else
     return (
       <div className={styles.root}>
-        <SectionHeader name={`Zamówienie id: ${id} `} />
+        <SectionHeader name={`Order id: ${id} `} />
         <div className={styles.order}>
           {order && (
             <div>

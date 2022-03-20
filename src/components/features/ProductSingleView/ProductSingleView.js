@@ -28,8 +28,8 @@ const Component = ({product, addProduct}) => {
       <div className={styles.image}>
         <img src={product.image} alt={product.title} />
       </div>
-      <h3>Cena: {product.price}PLN</h3>
-      <Button name="Dodaj do koszyka" click={addToCartProduct} />
+      <h3>Price: {product.price}$</h3>
+      <Button name="Add to cart" click={addToCartProduct} />
     </div>
   );
 };

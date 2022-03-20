@@ -6,7 +6,7 @@ import styles from './Order.module.scss';
 const Order = () => {
   return (
     <div className={styles.root}>
-      <SectionHeader name='Zamówienie' />
+      <SectionHeader name='Order' />
       <div className={styles.order}>
         <ProductOrder />
       </div>

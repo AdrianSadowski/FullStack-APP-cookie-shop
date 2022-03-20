@@ -1,1 +1,12 @@
 @import '../../../styles/settings.scss';
+
+.root{
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+  .contactForm{
+    width: 80%;
+  }
+}

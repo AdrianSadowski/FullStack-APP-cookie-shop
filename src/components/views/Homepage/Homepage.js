@@ -17,10 +17,6 @@ const Component = ({products, fetchProducts}) => {
     return <Loader />;
   }
 
-  // let isPromotedFilter = products.filter(function(product) {
-  //   return product.promoted === true ;
-  // });
-  // console.log(isPromotedFilter);
   return (
     <div>
       <SectionHeader name="Polecane produkty" />
@@ -40,7 +36,7 @@ const Component = ({products, fetchProducts}) => {
 };
 
 Component.propTypes = {
-  products: PropTypes.array,
+  products: PropTypes.array.isRequired,
   fetchProducts: PropTypes.func,
 };
 

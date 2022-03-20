@@ -37,7 +37,7 @@ const ProductBox = ({product}) => {
         <p className="col-6">{price}</p>
       </div>
       <div className={styles.buttons}>
-        <Button click={addToCartProduct} name="Dodaj do koszyka" />
+        <Button click={addToCartProduct} name="Add to cart" />
       </div>
     </div>
   );

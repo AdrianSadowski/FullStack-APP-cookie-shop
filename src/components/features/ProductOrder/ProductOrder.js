@@ -38,11 +38,10 @@ const ProductOrder = () => {
   }, [cartData, totalPrice, totalItems, setTotalItems, setTotalPrice]);
 
   const data = {
-    inputErrorInfo: 'Proszę wypełnić powyższe pole',
     capthaError: 'Check your reCAPRHA code',
     error404: 'Error 404, Please try again later.',
-    order: `Zamówiłeś ${totalItems} produktów`,
-    priceAll: `Wartość twojego zamówienia: ${totalPrice.toFixed(2)} PLN`,
+    order: `You ordered ${totalItems} items`,
+    priceAll: `TOTAL : ${totalPrice.toFixed(2)} $`,
   };
 
   const onSubmit = async (user) => {
@@ -155,10 +154,10 @@ const ProductOrder = () => {
             </label>
             <div className={styles.formButtons}>
               <button type="reset" className={styles.reset}>
-                Wyczyść
+                Clear
               </button>
               <button type="submit" className={styles.submit}>
-                Wyślij
+                Send
               </button>
             </div>
           </div>
