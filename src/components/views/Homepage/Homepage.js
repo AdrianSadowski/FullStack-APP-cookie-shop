@@ -19,7 +19,7 @@ const Component = ({products, fetchProducts}) => {
 
   return (
     <div>
-      <SectionHeader name="Polecane produkty" />
+      <SectionHeader name="Recommended" />
       <div className={styles.container}>
         {products.length && (
           <div className={styles.product}>
