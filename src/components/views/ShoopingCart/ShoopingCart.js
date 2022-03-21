@@ -4,10 +4,11 @@ import ShoopingCartProduct from '../../features/ShoopingCartProduct/ShoopingCart
 import SectionHeader from '../../features/SectionHeader/SectionHeader';
 import styles from './ShoopingCart.module.scss';
 import {useSelector, useDispatch} from 'react-redux';
-import {getAllCart, removeFromCart} from '../../../redux/productsRedux';
+import {getAllCart, getCartFromLocalStorage, removeFromCart} from '../../../redux/productsRedux';
 import {Link} from 'react-router-dom';
 
 const ShoopingCart = () => {
+  // const cartData = useSelector(state => getCartFromLocalStorage(state));
   const cartData = useSelector(state => getAllCart(state));
   const dispatch = useDispatch();
   const removeCartItem = productId => dispatch(removeFromCart(productId));

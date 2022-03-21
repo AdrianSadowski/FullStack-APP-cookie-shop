@@ -99,6 +99,24 @@ export const fetchOrderById = orderId => async (dispatch, getState) => {
     });
 };
 
+// export const addToLocalStorage = payload => async (dispatch) =>  {
+//   dispatch(fetchStarted());
+//   await localStorage.setItem('cart', JSON.stringify(payload));
+//   await dispatch(addToCart(payload));
+//   console.log(payload);
+//   dispatch(fetchSuccess(payload));
+
+// };
+
+
+// export const getCartFromLocalStorage = () => async (dispatch) => {
+//   dispatch(fetchStarted());
+//   const cartProducts = JSON.parse(localStorage.getItem('cart'));
+//   console.log(cartProducts);
+//   await dispatch(getAllCart(cartProducts));
+//   dispatch(fetchSuccess(cartProducts));
+// };
+
 /* reducer */
 export const reducer = (statePart = [], action = {}) => {
   switch (action.type) {

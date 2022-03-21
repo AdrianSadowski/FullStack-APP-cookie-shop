@@ -4,12 +4,14 @@ import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 import Button from '../Button/Button';
 import {useDispatch} from 'react-redux';
-import {addToCart} from '../../../redux/productsRedux';
+import {addToCart, addToLocalStorage} from '../../../redux/productsRedux';
 
 const ProductBox = ({product}) => {
   const {title, price, _id, image} = product;
   const dispatch = useDispatch();
   const addProduct = product => dispatch(addToCart(product));
+
+  //const addProduct = product => dispatch(addToLocalStorage(product));
 
   const addToCartProduct = event => {
     event.preventDefault();
