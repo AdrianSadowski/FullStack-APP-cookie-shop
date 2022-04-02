@@ -1,3 +1,2 @@
-Husky installing
-
-https://typicode.github.io/husky/#/?id=automatic-recommended
+Full Stack Pet Shop.
+Stack: React, Redux, Node.js, Express, Mongose, Sass
